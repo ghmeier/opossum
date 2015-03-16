@@ -59,10 +59,10 @@ public class UserResource {
 	@GET
 	@Path("{name}/events")
 	public OpossumResponse getEvents(@PathParam("name")String name){
-		Firebase ref = new Firebase(OpossumApplication.FIREBASE_HOST).child("users").child(name).child("eventIds");
+		Firebase ref = new Firebase(OpossumApplication.FIREBASE_HOST).child("users").child(name).child("event_ids");
 		DataSnapshot snap = FirebaseHelper.readData(ref);
 		
-		if (snap.getValue() == null){
+		if (snap == null || snap.getValue() == null){
 			return OpossumResponse.getOk("No events.");
 		}
 		
@@ -82,7 +82,7 @@ public class UserResource {
 		OpossumEvent event = EventLogic.getEvent(name, eventName);
 		
 		if (event == null){
-			return OpossumResponse.getError(name +" does not have the event +"+eventName+".");
+			return OpossumResponse.getError(name +" does not have the event "+eventName+".");
 		}
 		
 		return OpossumResponse.getOk(event);

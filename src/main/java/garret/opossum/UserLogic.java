@@ -18,12 +18,11 @@ public class UserLogic {
 		Firebase ref = new Firebase(OpossumApplication.FIREBASE_HOST).child("users").child(name);
 		DataSnapshot snap = FirebaseHelper.readData(ref);
 		
-		if (snap.getValue() == null){
+		if (snap == null || snap.getValue() == null){
 			return null;
 		}
 		
 		user = (Map<String,Object>)snap.getValue();
-		System.out.println(user);
 		
 		return new OpossumUser(user);
 	}

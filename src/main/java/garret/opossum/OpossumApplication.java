@@ -1,5 +1,10 @@
 package garret.opossum;
 
+import java.util.Map;
+
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+
 import twitter4j.FilterQuery;
 import twitter4j.StatusListener;
 import twitter4j.Twitter;
@@ -20,16 +25,21 @@ public class OpossumApplication extends Application<OpossumConfiguration> {
 	private static String AUTH_ACCESS = "345762730-S1TlUCZCkLvDnqIcWYmL1g7xUPLpLoqYZGt35bFV";
 	private static String AUTH_SECRET = "vlhBgSHCqDPErqODY7edtDiusVPEKkPtYzvZh1l3jmmqG";
 	public static String FIREBASE_HOST = "https://opossum.firebaseio.com";
+	public static Map<String,String> TAGS;
 	
     public static void main(String[] args) throws Exception {
         new OpossumApplication().run(args);
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public void initialize(Bootstrap<OpossumConfiguration> bootstrap) {
 
 		tf = new TwitterFactory(getConfBuilder().build());
 		twitter = tf.getInstance();
+		
+		TAGS = TagLogic.getTagMap();
+		
     }
 
     @Override
