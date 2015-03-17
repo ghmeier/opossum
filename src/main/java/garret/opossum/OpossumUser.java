@@ -36,8 +36,9 @@ public class OpossumUser {
 		this.setFollowers(user.getFollowersCount());
 	}
 
+	@SuppressWarnings("unchecked")
 	public OpossumUser(Map<String,Object> user) {
-		HashMap<String,String> rawIds = new HashMap<String,String>();
+		Map<String,String> rawIds = (Map<String,String>)user.get("event_ids");
 		List<String> ids = new ArrayList<String>();
 		if (rawIds != null && rawIds.keySet() != null){
 			for (String s:rawIds.keySet()){
