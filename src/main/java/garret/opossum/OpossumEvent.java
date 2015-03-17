@@ -21,12 +21,19 @@ public class OpossumEvent {
 		this.setMembers(members);
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked" })
 	public OpossumEvent(Map<String,Object> eventMap){
 		this.setName((String) eventMap.get("name"));
 		this.setOwner((String) eventMap.get("owner"));
 		this.setTag((String) eventMap.get("tag"));
-		this.setMembers((List<String>) eventMap.get("members"));
+		Map<String,String> memberRaw = (Map<String,String>)eventMap.get("members");
+		List<String> members = new ArrayList<String>();
+		if (memberRaw != null && memberRaw.keySet() != null){
+			for (String s:memberRaw.keySet()){
+				members.add(s);
+			}
+		}
+		this.setMembers(members);
 	}
 
 	public static OpossumEvent getNewEvent(String eventName,String owner){

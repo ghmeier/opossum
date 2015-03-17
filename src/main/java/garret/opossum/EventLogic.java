@@ -44,4 +44,20 @@ public class EventLogic {
 		
 		return oEvent;
 	}
+	
+	public static boolean addMember(String name, String eventName,long statusId){
+		Firebase eventRef = new Firebase(OpossumApplication.FIREBASE_HOST).child("events").child(eventName).child("members");
+		Firebase memberRef = eventRef.child(name);
+		
+		DataSnapshot snap = FirebaseHelper.readData(memberRef);
+		if (snap != null && snap.getValue() != null){
+			return false;
+		}
+		
+		Map<String,Long> data = new HashMap<String,Long>();
+		data.put(name, statusId);
+		FirebaseHelper.writeData(eventRef, data);
+		
+		return true;
+	}
 }

@@ -31,7 +31,6 @@ public class OpossumApplication extends Application<OpossumConfiguration> {
         new OpossumApplication().run(args);
     }
 
-    @SuppressWarnings("unchecked")
 	@Override
     public void initialize(Bootstrap<OpossumConfiguration> bootstrap) {
 
@@ -48,13 +47,13 @@ public class OpossumApplication extends Application<OpossumConfiguration> {
         environment.jersey().register(new SearchResource());
         environment.jersey().register(new UserResource());
         
-/*        Authorization auth = AuthorizationFactory.getInstance(getConfBuilder().build());
+        Authorization auth = AuthorizationFactory.getInstance(getConfBuilder().build());
         TwitterStream twitterStream = new TwitterStreamFactory().getInstance(auth);
         StatusListener listener = new OStatusListener();
         twitterStream.addListener(listener);
         String[] tags = {"#opossum"};
         FilterQuery fq = new FilterQuery(0,null,tags);
-        twitterStream.filter(fq);*/
+        twitterStream.filter(fq);
     }
     
     public static Twitter getTwitter(){

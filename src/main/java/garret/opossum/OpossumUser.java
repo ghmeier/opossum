@@ -35,10 +35,16 @@ public class OpossumUser {
 		this.setPicture(user.getProfileImageURL());
 		this.setFollowers(user.getFollowersCount());
 	}
-	
-	@SuppressWarnings("unchecked")
+
 	public OpossumUser(Map<String,Object> user) {
-		this.setEventIds((List<String>)user.get("eventIds"));
+		HashMap<String,String> rawIds = new HashMap<String,String>();
+		List<String> ids = new ArrayList<String>();
+		if (rawIds != null && rawIds.keySet() != null){
+			for (String s:rawIds.keySet()){
+				ids.add(s);
+			}
+		}
+		this.setEventIds(ids);
 		this.setName((String) user.get("name"));
 		this.setScreenName((String) user.get("screenName"));
 		this.setId((Long)user.get("id"));
