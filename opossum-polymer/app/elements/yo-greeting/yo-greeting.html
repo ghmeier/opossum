@@ -3,14 +3,17 @@
 <polymer-element name="yo-greeting" attributes="">
   <template>
     <link rel="stylesheet" href="yo-greeting.css">
-    <h1>{{ greeting }}, {{ greeting }}!</h1>
-    <span>Update text to change the greeting.</span>
-    <input type="text" value="{{ greeting }}">
+    <h1>Opossum</h1>
+    <span>Enter your twiter name to get started:</span>
+    <paper-input label="{{name}}" ></paper-input>
+    <div horizontal end-justified layout>
+    <paper-fab icon="send">Go</paper-fab>
+    </div>
   </template>
   <script>
     (function () {
       Polymer({
-        greeting: '\'Allo'
+        name: '@opossum'
       });
     })();
   </script>

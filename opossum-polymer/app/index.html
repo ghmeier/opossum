@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>poly foo</title>
+  <title>Opossum</title>
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
   <!-- build:css styles/main.css -->
@@ -30,13 +30,13 @@
       <core-header-panel drawer>
 
         <!-- Drawer Toolbar -->
-        <core-toolbar>Menu</core-toolbar>
+        <core-toolbar></core-toolbar>
 
         <!-- Drawer Content -->
         <core-menu selected="0">
-          <core-item label="Yo"></core-item>
+<!--           <core-item label=""></core-item>
           <core-item label="Polymer"></core-item>
-          <core-item label="App"></core-item>
+          <core-item label="App"></core-item> -->
         </core-menu>
 
       </core-header-panel>
@@ -51,11 +51,11 @@
         </core-toolbar>
 
         <!-- Main Content -->
+        <core-animated-pages selected = "0" transitions="slide-from-right">
         <div class="hero-unit">
           <yo-greeting></yo-greeting>
-          <p>You now have</p>
-          <yo-list></yo-list>
         </div>
+        </core-animated-pages>
       </core-header-panel>
     </core-drawer-panel>
 

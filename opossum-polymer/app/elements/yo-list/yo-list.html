@@ -1,26 +1,28 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
 
 <polymer-element name="yo-list" attributes="">
+  
   <template>
-    <link rel="stylesheet" href="yo-list.css">
-    <ul>
-      <template id="greeting" repeat="{{ item in items }}">
-        <li>{{ item }}</li>
-      </template>
-    </ul>
+    <link rel="stylesheet" href="yo-list.css"> 
+    <core-ajax auto url="{{url}}" handleAs="json" contentType="application/json" response="{{response}}"></core-ajax> 
+    <template repeat="{{i in items}}">
+      <p>{{i.name}}</p>
+    </template>
   </template>
   <script>
     (function () {
       Polymer({
-        ready: function () {
-          this.items = [
-            'HTML5 Boilerplate',
-            'Web Component Polyfills',
-            'Core Elements',
-            'Paper Elements',
-            'Polymer'
-          ];
-        }
+        ready:function(){
+          this.url = "http://localhost:8080/user/headin_thecloud/events";
+          this.items = [];
+        },
+        responseChanged: function(oldValue) {
+          for (id in this.response.data){
+            this.items.push({name:id});
+            console.log(this.items);
+          }
+        }      
       });
     })();
   </script>
