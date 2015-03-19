@@ -1,1 +1,1 @@
-web    java $JAVA_OPTS -Ddw.http.port=$PORT -Ddw.http.adminPort=$PORT -jar target/opossum-0.0.1.jar server
+web    java $JAVA_OPTS -Ddw.server.connector.port=$PORT -Ddw.server.connector.adminPort=$PORT -jar target/opossum-0.0.1.jar server src/main/java/garret/opossum/resources/config.yml
