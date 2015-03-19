@@ -5,15 +5,23 @@
     <link rel="stylesheet" href="yo-greeting.css">
     <h1>Opossum</h1>
     <span>Enter your twiter name to get started:</span>
-    <paper-input label="{{name}}" ></paper-input>
+    <paper-input label="{{placeholder}}" value="{{name}}" horizontal layout start></paper-input>
     <div horizontal end-justified layout>
-    <paper-fab icon="send">Go</paper-fab>
+      <paper-fab icon="send" on-click="{{go}}">Go</paper-fab>
     </div>
   </template>
   <script>
     (function () {
       Polymer({
-        name: '@opossum'
+        name: '',
+        placeholder: '@opossum',
+        go : function(){
+          if (this.name.match(/@.*/g)){
+            localStorage.name = this.name.substring(1);
+            console.log(localStorage.name);
+            window.location.href="profile.html";
+          }
+        }
       });
     })();
   </script>

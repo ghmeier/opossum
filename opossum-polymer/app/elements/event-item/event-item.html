@@ -1,0 +1,31 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<polymer-element name="event-item" attributes="i">
+  <template>
+    <link rel="stylesheet" href="event-item.css">
+    <core-ajax auto url="{{i.url}}" handleAs="json" contentType="application/json" response="{{response}}"></core-ajax>
+        <h3 style="-webkit-margin-after:0em">{{i.name}}</h3>
+        <h6 style="-webkit-margin-before:0em;-webkit-margin-after:0em;color:gray">{{i.members.length}} member(s)</h6>
+        <h6 style="-webkit-margin-before:0em;font-weight:normal"><strong>Join with:</strong> #{{i.tag}}</h6>
+        <paper-button on-click="{{tweet}}">Tweet it!</paper-button>    
+  </template>
+  <script>
+    (function () {
+      Polymer({
+        ready: function(){
+          console.log(this.i);
+        },
+        responseChanged: function(oldValue) {
+          console.log(this.response);
+          this.i.members = this.response.data.members;
+          this.i.tag = this.response.data.tag;
+        },
+        tweet: function(){
+          window.open("https://twitter.com/share?url=a&hashtags=opossum&text=Use%20%23"+this.i.tag+"%20to%20come%20hang%20out!");
+        }
+      });
+    })();
+  </script>
+<script>
+</script>
+</polymer-element>

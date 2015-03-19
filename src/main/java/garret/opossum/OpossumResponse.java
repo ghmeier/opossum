@@ -49,7 +49,7 @@ public class OpossumResponse {
 	}
 	
 	public static OpossumResponse getError(String message){
-		return new OpossumResponse(200,"ERROR",message);
+		return new OpossumResponse(400,"ERROR",message);
 	}
 
 }

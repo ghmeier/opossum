@@ -1,0 +1,21 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<polymer-element name="nav-list" attributes="">
+  <template>
+    <link rel="stylesheet" href="nav-list.css">
+            <core-menu selected="">
+           <paper-button on-click="{{logout}}">Logout</paper-button>
+        </core-menu>
+  </template>
+  <script>
+    (function () {
+      Polymer({
+        logout: function(){
+          delete localStorage.name;
+          console.log(localStorage.name);
+          window.location.href = "index.html";
+        }
+      });
+    })();
+  </script>
+</polymer-element>

@@ -6,23 +6,34 @@
   <template>
     <link rel="stylesheet" href="yo-list.css"> 
     <core-ajax auto url="{{url}}" handleAs="json" contentType="application/json" response="{{response}}"></core-ajax> 
+
+    <h1>
+      <core-image sizing="cover" style="width:75px;height:75px;border-radius:50%" src="{{profile.picture}}"></core-image>
+      &nbsp;{{profile.name}}
+    </h1>
+    <h5>@{{profile.screenName}}</h5>
+    <h2>Events</h2>
+    <div vertical layout start>
     <template repeat="{{i in items}}">
-      <p>{{i.name}}</p>
+      <event-item vertical layout i="{{i}}"></event-item>
     </template>
+    </div>
   </template>
   <script>
     (function () {
       Polymer({
         ready:function(){
-          this.url = "http://localhost:8080/user/headin_thecloud/events";
+          this.url = "http://localhost:8080/user/"+localStorage.name+"/";
           this.items = [];
+          this.profile = {};
         },
         responseChanged: function(oldValue) {
-          for (id in this.response.data){
-            this.items.push({name:id});
-            console.log(this.items);
+          this.profile = this.response.data;
+          for (id in this.profile.eventIds){
+            var eId = this.profile.eventIds[id];
+            this.items.push({name:eId,members:[],url:this.url+"events/"+eId});
           }
-        }      
+        },
       });
     })();
   </script>

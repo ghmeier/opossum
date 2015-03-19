@@ -7,10 +7,15 @@
   var app = document.querySelector('#app');
   app.appName = 'Opossum';
 
+  if (window.location.href === 'http://localhost:9000/' && localStorage.name){
+    //console.log(localStorage.name);
+    window.location.href = 'profile.html';
+  }
+
   // Listen for template bound event to know when bindings
   // have resolved and content has been stamped to the page
   app.addEventListener('template-bound', function() {
-    console.log('Our app is ready to rock!');
+
   });
 
 // wrap document so it plays nice with other libraries
