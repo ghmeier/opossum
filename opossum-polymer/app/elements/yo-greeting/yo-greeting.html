@@ -2,6 +2,8 @@
 
 <polymer-element name="yo-greeting" attributes="">
   <template>
+    <core-ajax id="exists" url="{{url}}{{formatted}}" handleAs="json" contentType="application/json" response="{{response}}"></core-ajax> 
+    <core-ajax id="new" method="POST" url="{{url}}{{formatted}}" handleAs="json" contentType="application/json" response="{{response}}"></core-ajax> 
     <link rel="stylesheet" href="yo-greeting.css">
     <h1>Opossum</h1>
     <span>Enter your twiter name to get started:</span>
@@ -15,13 +17,25 @@
       Polymer({
         name: '',
         placeholder: '@opossum',
+        ready:function(){
+          this.url = app.server+"/user/";
+        },
         go : function(){
           if (this.name.match(/@.*/g)){
-            localStorage.name = this.name.substring(1);
-            console.log(localStorage.name);
-            window.location.href="profile.html";
+            this.formatted = this.name.substring(1);
+            this.$.exists.go();
           }
-        }
+        },
+        responseChanged: function(oldValue) {
+          var code = this.response.code;
+          if (code === 200){
+
+              localStorage.name = this.formatted;
+              window.location.href="profile.html";
+            }else{
+              this.$.new.go();
+            }
+        },
       });
     })();
   </script>

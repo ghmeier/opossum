@@ -3,8 +3,13 @@
 <polymer-element name="nav-list" attributes="">
   <template>
     <link rel="stylesheet" href="nav-list.css">
-            <core-menu selected="">
-           <paper-button on-click="{{logout}}">Logout</paper-button>
+          <core-menu vertical layout selected="0">
+          <paper-button on-click="{{toProfile}}">Profile</paper-button>
+          <paper-button on-click="{{toAbout}}">About</paper-button>
+          <paper-button on-click="{{logout}}">Logout</paper-button>
+          <paper-button>
+            Donate:&nbsp;<iframe style="width: 120px; height: 33px" scrolling="no" frameborder="0" src="https://platform.venmo.com/#payment-widget?recipient_id=1397129314566144218"></iframe>
+          </paper-button>
         </core-menu>
   </template>
   <script>
@@ -14,6 +19,12 @@
           delete localStorage.name;
           console.log(localStorage.name);
           window.location.href = "index.html";
+        },
+        toProfile: function(){
+          window.location.href="profile.html";
+        },
+        toAbout:function(){
+          window.location.href="about.html";
         }
       });
     })();

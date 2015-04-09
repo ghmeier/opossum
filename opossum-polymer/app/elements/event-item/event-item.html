@@ -4,10 +4,17 @@
   <template>
     <link rel="stylesheet" href="event-item.css">
     <core-ajax auto url="{{i.url}}" handleAs="json" contentType="application/json" response="{{response}}"></core-ajax>
-        <h3 style="-webkit-margin-after:0em">{{i.name}}</h3>
-        <h6 style="-webkit-margin-before:0em;-webkit-margin-after:0em;color:gray">{{i.members.length}} member(s)</h6>
-        <h6 style="-webkit-margin-before:0em;font-weight:normal"><strong>Join with:</strong> #{{i.tag}}</h6>
-        <paper-button on-click="{{tweet}}">Tweet it!</paper-button>    
+    <paper-shadow z="1" style="-webkit-margin-after:1em;padding:.5em" vertical layout>
+      <div horizontal layout>
+        <h3 style="-webkit-margin-after:0em;-webkit-margin-before:0em;" start-justified flex self-end>{{i.name}}</h3>
+        <h6 style="-webkit-margin-after:0em;-webkit-margin-before:0em;color:gray" end-justified flex self-end>&nbsp;{{i.members.length}} member(s)</h6>
+      </div>
+      <div horizontal center-justified layout>  
+        <!-- <h6 style="-webkit-margin-before:0em;-webkit-margin-after:0em;" start-justified self-center>Join with:</h6> -->
+        <!-- <h4 style="-webkit-margin-before:0em;-webkit-margin-after:0em;font-weight:normal" self-center>&nbsp;#{{i.tag}}</h4> -->
+        <paper-button class="hover" on-click="{{tweet}}" center-justified>&nbsp;#{{i.tag}}</paper-button>    
+      </div>
+    </div>
   </template>
   <script>
     (function () {

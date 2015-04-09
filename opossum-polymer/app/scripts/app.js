@@ -6,8 +6,9 @@
   // Learn more about auto-binding templates at http://goo.gl/Dx1u2g
   var app = document.querySelector('#app');
   app.appName = 'Opossum';
-
-  if (window.location.href === 'http://localhost:9000/' && localStorage.name){
+  app.server = 'https://opossum.herokuapp.com';
+  console.log(window.location.href);
+  if ((window.location.href === 'http://localhost:9000/' || window.location.href==="https://opossum.firebaseapp.com/") && localStorage.name){
     //console.log(localStorage.name);
     window.location.href = 'profile.html';
   }

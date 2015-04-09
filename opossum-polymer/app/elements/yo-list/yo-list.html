@@ -12,18 +12,24 @@
       &nbsp;{{profile.name}}
     </h1>
     <h5>@{{profile.screenName}}</h5>
+
     <h2>Events</h2>
-    <div vertical layout start>
-    <template repeat="{{i in items}}">
-      <event-item vertical layout i="{{i}}"></event-item>
-    </template>
+    <div vertical layout >
+      <template repeat="{{i in items}}">
+        <event-item i="{{i}}"></event-item>
+      </template>
+      <h2>New Event</h2>
+      <div horizontal layout>
+        <paper-input label="Event Name" floatingLabel="true" value="{{new}}" start-justified></paper-input>
+        <paper-fab icon="send" on-click="{{go}}"end-justified self-end>Go</paper-fab>
+      </div>
     </div>
   </template>
   <script>
     (function () {
       Polymer({
         ready:function(){
-          this.url = "http://localhost:8080/user/"+localStorage.name+"/";
+          this.url = app.server+"/user/"+localStorage.name+"/";
           this.items = [];
           this.profile = {};
         },
